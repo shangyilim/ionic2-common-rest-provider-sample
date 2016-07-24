@@ -15,7 +15,6 @@ export class CommonRestProvider {
   private loading: Loading;
 
   constructor(protected http: Http, protected nav: NavController) {
-
   }
 
   private getHttpRequest(url: string, requestMethod: RequestMethod, body?: any) {
@@ -35,8 +34,7 @@ export class CommonRestProvider {
       }
 
       //show the loader before starting the request
-      this.showLoader();
-
+      let loader = this.showLoader();
 
       this.http.request(url, requestOptionArgs)
         .map(res => res.json())
@@ -44,12 +42,12 @@ export class CommonRestProvider {
           // we've got back the raw data, now generate the core schedule data
           // and save the data for later reference
 
-          //dismiss the loader and return response back.
-          this.loading.dismiss().then(() => resolve(data));
+          // Dismiss the loader and return response back.
+          loader.dismiss().then(() => resolve(data));
 
         }, (error) => {
-          //dismiss the loader and return error back.
-          this.loading.dismiss().then(() => reject(error));
+          // Dismiss the loader and return error back.
+          loader.dismiss().then(() => reject(error));
         });
     });
   }
@@ -67,14 +65,14 @@ export class CommonRestProvider {
   }
 
   private showLoader() {
-
-    if (!this.loading) {
-      this.loading = Loading.create({
+    let loader = Loading.create({
         content: "Loading..."
       });
-    }
 
-    this.nav.present(this.loading);
+    // Load the loader into the current navController
+    this.nav.present(loader);
+
+    return loader;
   }
 
 }
