@@ -5,30 +5,21 @@
 </ion-header>
 
 <ion-content padding class="home">
-  <h2>Welcome to Ionic!</h2>
+  <h2>Common rest provider sample across pages</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    This demonstrates a rest provider that can be extended by other providers to provider common functionality like loaders when running a rest request.
   </p>
   <p>
-    Take a look at the <code>app/</code> directory to add or change tabs,
-    update any existing page or create new pages.
+    Get comments runs on a comments provider. Go to About tab to see another provider in action.
   </p>
   <button (click)="getComments()">Get Comments</button>
-  <button (click)="getPosts()">Get Posts</button>
-  <ion-list  *ngIf="showComments">
+  
+  <ion-list>
   <ion-item *ngFor="let comment of comments">
     <ion-avatar item-left>
     </ion-avatar>
     <h2>{{comment.name}}</h2>
     <p>{{comment.body}}</p>
-  </ion-item>
-</ion-list>
-
-<ion-list *ngIf="showPosts">
-  <ion-item  *ngFor="let post of posts" >
-    <h2>{{post.title}}</h2>
-    <p>{{post.body}}</p>
   </ion-item>
 </ion-list>
 </ion-content>

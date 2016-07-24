@@ -7,4 +7,11 @@
 </ion-header>
 
 <ion-content padding class="about">
+  <button (click)="getPosts()">Get Posts</button>
+  <ion-list>
+  <ion-item  *ngFor="let post of posts" >
+    <h2>{{post.title}}</h2>
+    <p>{{post.body}}</p>
+  </ion-item>
+</ion-list>
 </ion-content>
